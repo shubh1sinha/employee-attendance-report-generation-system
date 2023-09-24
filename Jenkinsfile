@@ -54,7 +54,7 @@ pipeline{
 						sh 'ls -ltr'
                         sh 'pwd'
                         sh '/usr/local/bin/helm upgrade --install employee-app employee'
-						sh '/usr/local/bin/helm upgrade --install attendance-app attendace'
+						sh '/usr/local/bin/helm upgrade --install attendance-app attendance'
             }
         }
 		
