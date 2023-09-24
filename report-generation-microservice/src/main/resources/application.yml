@@ -17,11 +17,11 @@ spring:
   data:
     mongodb:
      database: emp_attendance_management
-     uri: ${MONGO_URI:mongodb://localhost:27017}
+     uri: ${MONGO_URI:mongodb://my-mongo-db:HkhvoC9X3SE0bPe3yxGnVwrUNssARaDZ2nZhJa2QbsR1kCOoVboPwRIHuYa9qW4RgGPELkn4dZlMACDbUCZ76g==@my-mongo-db.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@my-mongo-db@}
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     password: ${JDBC_PASSWORD:shubh123456}
-    url: ${JDBC_URI:jdbc:mariadb://localhost:3306/emp_attendance_management}
+    url: ${JDBC_URI:jdbc:mysql:///emp_attendance_management?cloudSqlInstance=burner-shusinha5:us-central1:my-sql-db&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=root&password=shubh123456&useSSL=false}
     username: ${JDBC_USER:root}
   kafka:
     producer:
