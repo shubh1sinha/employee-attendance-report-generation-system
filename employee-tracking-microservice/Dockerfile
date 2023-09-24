@@ -1,3 +1,3 @@
 FROM openjdk:11
-COPY target/attendace-computing-system.jar attendace-computing.jar
-ENTRYPOINT ["java", "-jar" ,"/employee-tracking-microservice.jar"]
+COPY target/employee-tracking-microservice.jar employee-tracking.jar
+ENTRYPOINT ["java", "-jar" ,"/employee-tracking.jar"]

@@ -1,3 +1,3 @@
 FROM openjdk:11
-COPY target/attendace-computing-system.jar attendace-computing.jar
-ENTRYPOINT ["java", "-jar" ,"/report-generation-microservice.jar"]
+COPY target/report-generation-microservice.jar report-generation.jar
+ENTRYPOINT ["java", "-jar" ,"/report-generation.jar"]
