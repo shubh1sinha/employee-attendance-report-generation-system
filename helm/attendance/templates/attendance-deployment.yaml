@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: attendance-deployment
+   
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: attendace-pod
+      labels:
+        app: attendance-app
+    spec:
+      containers:
+        - name: attendace-container
+          image: shubh1sinha/report-generation-microservice:1.1
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: '50m'
+              memory: '1G'
+            requests:
+              cpu: '1m'
+              memory: '348Mi'
+          ports:
+          - containerPort: 8098
+            name: http         
+  selector:
+    matchLabels:
+     app: attendance-app

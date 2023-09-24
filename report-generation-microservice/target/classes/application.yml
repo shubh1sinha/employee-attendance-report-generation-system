@@ -1,0 +1,42 @@
+logging:
+  file: 
+    name: target/logs/local_profile_app.log
+  level:
+    com.mangaement.employee.service: INFO
+    com.mangaement.employee.repository: INFO
+    com.mangaement.employee.utility: INFO
+    org.hibernate: INFO
+    org.hibernate.SQL: INFO
+
+server:
+  port: 8098
+  
+spring:
+  application:
+    name: report-generation-microservice
+  data:
+    mongodb:
+     database: emp_attendance_management
+     uri: ${MONGO_URI:mongodb://localhost:27017}
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    password: ${JDBC_PASSWORD:shubh123456}
+    url: ${JDBC_URI:jdbc:mariadb://localhost:3306/emp_attendance_management}
+    username: ${JDBC_USER:root}
+  kafka:
+    producer:
+      bootstrap-servers: ${KAFKA_SERVER:localhost:9092}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+service:
+    employee-management: ${EMP_URI:http://localhost:8088}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show-details: always
+      
+

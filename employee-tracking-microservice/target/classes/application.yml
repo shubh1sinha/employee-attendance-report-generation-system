@@ -1,0 +1,31 @@
+logging:
+  file: 
+    name: target/logs/local_profile_app.log
+  level:
+    com.mangaement.employee.service: INFO
+    com.mangaement.employee.repository: INFO
+    com.mangaement.employee.utility: INFO
+    org.hibernate: INFO
+    org.hibernate.SQL: INFO
+
+server:
+  port: 8088
+  
+spring:
+  application:
+    name: employee-tracking-microservice
+  data:
+    mongodb:
+     database: emp_attendance_management
+     uri: ${MONGO_URI:mongodb://localhost:27017}
+
+service:
+    attendace-management: ${REPORT_URI:http://localhost:8098}
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show-details: always
