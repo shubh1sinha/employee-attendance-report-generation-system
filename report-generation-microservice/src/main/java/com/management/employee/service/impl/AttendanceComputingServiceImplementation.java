@@ -110,7 +110,7 @@ public class AttendanceComputingServiceImplementation implements AttendanceCompu
 		for (int i = 0; i < inRecords.size(); i++) {
 			LocalTime swipeIn = inRecords.get(i).getUpdatedTime();
 			LocalTime swipeOut = outRecords.get(i).getUpdatedTime();
-			Duration duration = Duration.between(swipeOut, swipeIn);
+			Duration duration = Duration.between(swipeIn, swipeOut);
 			totalWorkingHours += duration.toHours();
 		}
 		return totalWorkingHours;
