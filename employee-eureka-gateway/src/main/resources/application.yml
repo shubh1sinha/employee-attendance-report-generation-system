@@ -10,4 +10,4 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: ${EUREKA_SERVER:http://eureka-0.eureka.default.svc.cluster.local:9190/eureka/}
+      defaultZone: ${EUREKA_SERVER:http://eureka-0.eureka.default.svc.cluster.local:9098/eureka/}

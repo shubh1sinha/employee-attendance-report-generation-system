@@ -49,7 +49,7 @@ eureka:
     fetchRegistry: true
     serviceUrl:
        #defaultZone: http://localhost:9098/eureka
-       defaultZone: http://eureka-0.eureka.default.svc.cluster.local:9190/eureka
+       defaultZone: http://eureka-0.eureka.default.svc.cluster.local:9098/eureka
 debug: true 
       
 
