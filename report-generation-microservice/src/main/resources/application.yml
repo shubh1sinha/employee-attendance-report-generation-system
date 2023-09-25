@@ -21,7 +21,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     password: ${JDBC_PASSWORD:shubh123456}
-    url: ${JDBC_URI:jdbc:mysql:///emp_attendance_management?cloudSqlInstance=burner-shusinha5:us-central1:my-sql-db&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=root&password=shubh123456&useSSL=false}
+    #url: ${JDBC_URI:jdbc:mysql://googles/emp_attendance_management?cloudSqlInstance=burner-shusinha5:us-central1:my-sql-db&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=root&password=shubh123456&useSSL=false}
+    url: jdbc:mysql://34.173.166.192/emp_attendance_management
     username: ${JDBC_USER:root}
   kafka:
     producer:
