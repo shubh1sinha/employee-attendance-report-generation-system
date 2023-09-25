@@ -30,7 +30,7 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 service:
-    employee-management: ${EMP_URI:http://employee-0.employee.default.svc.cluster.local:8088}
+    employee-management: ${EMP_URI:http://employee-tracking-microservice:8088}
 
 management:
   endpoints:
