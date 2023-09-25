@@ -17,19 +17,20 @@ spring:
   data:
     mongodb:
      database: emp_attendance_management
-     uri: ${MONGO_URI:mongodb://localhost:27017}
+     uri: ${MONGO_URI:mongodb://my-mongo-db:HkhvoC9X3SE0bPe3yxGnVwrUNssARaDZ2nZhJa2QbsR1kCOoVboPwRIHuYa9qW4RgGPELkn4dZlMACDbUCZ76g==@my-mongo-db.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@my-mongo-db@}
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     password: ${JDBC_PASSWORD:shubh123456}
-    url: ${JDBC_URI:jdbc:mariadb://localhost:3306/emp_attendance_management}
-    username: ${JDBC_USER:root}
+    #url: ${JDBC_URI:jdbc:mysql://googles/emp_attendance_management?cloudSqlInstance=burner-shusinha5:us-central1:my-sql-db&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=root&password=shubh123456&useSSL=false}
+    url: jdbc:mariadb://database.c4nar1amqhye.us-east-1.rds.amazonaws.com:3306/emp_attendance_app
+    username: ${JDBC_USER:admin}
   kafka:
     producer:
-      bootstrap-servers: ${KAFKA_SERVER:localhost:9092}
+      bootstrap-servers: ${KAFKA_SERVER:14.140.116.145:9092}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 service:
-    employee-management: ${EMP_URI:http://localhost:8088}
+    employee-management: ${EMP_URI:http://localhost:9092}
 
 management:
   endpoints:
@@ -38,5 +39,17 @@ management:
         include: '*'
     health:
       show-details: always
+      
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: eureka-0
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+       #defaultZone: http://localhost:9098/eureka
+       defaultZone: http://eureka-0.eureka.default.svc.cluster.local:9190/eureka
+debug: true 
       
 

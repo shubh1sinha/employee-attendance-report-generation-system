@@ -1,0 +1,13 @@
+server:
+ port: 9098
+ 
+spring:
+  application:
+    name: employee-eureka-gateway
+ 
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: ${EUREKA_SERVER:http://eureka-0.eureka.default.svc.cluster.local:9190/eureka/}

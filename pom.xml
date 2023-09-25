@@ -21,5 +21,6 @@
 	<modules>
 		<module>report-generation-microservice</module>
 		<module>employee-tracking-microservice</module>
+		<module>employee-eureka-gateway</module>
 	</modules>
 </project>

@@ -30,7 +30,7 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 service:
-    employee-management: ${EMP_URI:http://employee-tracking-microservice:8088}
+    employee-management: ${EMP_URI:http://localhost:9092}
 
 management:
   endpoints:
@@ -39,5 +39,17 @@ management:
         include: '*'
     health:
       show-details: always
+      
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: eureka-0
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+       #defaultZone: http://localhost:9098/eureka
+       defaultZone: http://eureka-0.eureka.default.svc.cluster.local:9190/eureka
+debug: true 
       
 

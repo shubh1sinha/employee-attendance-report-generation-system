@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,7 +13,9 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.management.employee.entity.EmployeeAttendaceReport;
 import com.management.employee.entity.EmployeeAttendance;
@@ -36,13 +39,19 @@ public class AttendanceComputingServiceImplementation implements AttendanceCompu
 	@Autowired
 	private EmployeeTrackingFeign employeeTrackingFeign;
 	
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	public static final Logger logger = LoggerFactory.getLogger(AttendanceComputingServiceImplementation.class);
 
 	@Override
 	public String saveEmployeeAttendaceByEmployeeId(long employeeId, String action)
 			throws InvalidRequestException, InvalidSearchException {
 		logger.info("saveEmployeeAttendaceByEmployeeId - at service layer");
-		EmployeeRecords employee = employeeTrackingFeign.getEmployeeRecordByEmployeeId(employeeId);
+		
+		//EmployeeRecords employee = employeeTrackingFeign.getEmployeeRecordByEmployeeId(employeeId);
+		ResponseEntity<EmployeeRecords> employeeEntity =   restTemplate.getForEntity("http://EMPLOYEE-TRACKING-MICROSERVICE:8088/employee-tracking/get-employee/"+employeeId, EmployeeRecords.class);
+		EmployeeRecords employee = employeeEntity.getBody();
 		Boolean ifUpdateRequired = false;
 		EmployeeAttendance swipedEmployee = new EmployeeAttendance();
 		if (employee != null && employee.getEmployeeAttendance() == null) {
