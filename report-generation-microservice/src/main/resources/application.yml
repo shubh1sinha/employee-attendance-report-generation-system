@@ -19,11 +19,11 @@ spring:
      database: emp_attendance_management
      uri: ${MONGO_URI:mongodb://my-mongo-db:HkhvoC9X3SE0bPe3yxGnVwrUNssARaDZ2nZhJa2QbsR1kCOoVboPwRIHuYa9qW4RgGPELkn4dZlMACDbUCZ76g==@my-mongo-db.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@my-mongo-db@}
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: org.mariadb.jdbc.Driver
     password: ${JDBC_PASSWORD:shubh123456}
     #url: ${JDBC_URI:jdbc:mysql://googles/emp_attendance_management?cloudSqlInstance=burner-shusinha5:us-central1:my-sql-db&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=root&password=shubh123456&useSSL=false}
-    url: jdbc:mysql://34.173.166.192/emp_attendance_management
-    username: ${JDBC_USER:root}
+    url: jdbc:mariadb://database.c4nar1amqhye.us-east-1.rds.amazonaws.com:3306/emp_attendance_app
+    username: ${JDBC_USER:admin}
   kafka:
     producer:
       bootstrap-servers: ${KAFKA_SERVER:localhost:9092}
