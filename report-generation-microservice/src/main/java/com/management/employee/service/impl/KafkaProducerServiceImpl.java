@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.management.employee.entity.EmployeeAttendance;
 import com.management.employee.entity.EmployeeRecords;
@@ -32,11 +34,15 @@ public class KafkaProducerServiceImpl implements KafkaProducerService{
 	
 	@Autowired
 	private AttendanceComputingService attendanceComputingService;
+	
+	@Autowired
+	private RestTemplate restTemplate;
 
 	@Override
 	public EmployeeReport generateEmployeeReportByEmpId(long empId) throws InvalidRequestException, InvalidSearchException {
 		EmployeeReport empReport = new EmployeeReport();
-		EmployeeRecords employee = employeeTrackingFeign.getEmployeeRecordByEmployeeId(empId);
+		ResponseEntity<EmployeeRecords> employeeEntity =   restTemplate.getForEntity("http://EMPLOYEE-TRACKING-MICROSERVICE:8088/employee-tracking/get-employee/"+empId, EmployeeRecords.class);
+		EmployeeRecords employee = employeeEntity.getBody();
 		if(employee.getEmployeeAttendance().size()>=1) {
 			EmployeeAttendance matchingAttendance = employee.getEmployeeAttendance().stream().filter(i-> i.getDate().equals(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE)) && 
 					i.getDay().equals(LocalDateTime.now().getDayOfWeek())
