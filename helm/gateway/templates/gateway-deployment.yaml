@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-deployment
+   
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: gateway-pod
+      labels:
+        app: gateway-app
+    spec:
+      containers:
+        - name: gateway-container
+          image: shubh1sinha/gateway-microservice:1.1
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: '50m'
+              memory: '1G'
+            requests:
+              cpu: '1m'
+              memory: '348Mi'
+          ports:
+          - containerPort: 9008
+            name: http         
+  selector:
+    matchLabels:
+     app: gateway-app
