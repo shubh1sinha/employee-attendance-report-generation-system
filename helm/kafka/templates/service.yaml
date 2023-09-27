@@ -16,7 +16,7 @@ metadata:
 spec:
   clusterIP: None
   ports:
-    - port: 9098
+    - port: 9092
       name: kafka
   selector:
     app: kafka
