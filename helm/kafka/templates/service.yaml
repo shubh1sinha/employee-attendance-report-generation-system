@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: kafka
-          image: docker.io/bitnami/kafka:3.4
+          image: jamesmedice/kafka:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 9092
