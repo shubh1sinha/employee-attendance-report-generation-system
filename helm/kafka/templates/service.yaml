@@ -1,4 +1,13 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-cm
+data:
+  kafka_service_address: http://kafka-0.kafka:9092/
+
+---
+
+apiVersion: v1
 kind: Service
 metadata:
   name: kafka
@@ -10,7 +19,7 @@ spec:
     - port: 9092
       name: kafka
   selector:
-    app: kafka
+    app: kafak
 
 ---
 
@@ -36,7 +45,12 @@ spec:
           ports:
             - containerPort: 9092
           env:
-            - name: ZOOKEEPER_COTAINER_CONNECT
+            - name: KAFKA_SERVER_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: kafka-cm
+                  key: kafka_service_address
+            - name: ZOOKEPER_CONTAINER_TAG
               value: zookeeper-container:2181
 
 
@@ -47,10 +61,10 @@ kind: Service
 metadata:
   name: kafka-service
   labels:
-    app: kafka
+    app: eureka
 spec:
   selector:
-    app: kafka
+    app: eureka
   type: LoadBalancer
   ports:
     - port: 9092
