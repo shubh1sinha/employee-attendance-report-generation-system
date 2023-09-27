@@ -85,11 +85,11 @@ pipeline{
 						sh 'ls -ltr'
                         sh 'pwd'
 						sh '/usr/local/bin/helm upgrade --install eureka-app eureka'
+						sh '/usr/local/bin/helm upgrade --install zookeeper-app zookeeper'
                         sh '/usr/local/bin/helm upgrade --install employee-app employee'
 						sh '/usr/local/bin/helm upgrade --install attendance-app attendance'
 						sh '/usr/local/bin/helm upgrade --install gateway-app gateway'
-					    sh '/usr/local/bin/helm upgrade --install kafka-app kafka'
-						sh '/usr/local/bin/helm upgrade --install zookeeper-app zookeeper'
+					    sh '/usr/local/bin/helm upgrade --install kafka-app kafka'		
             }
         }
 		
