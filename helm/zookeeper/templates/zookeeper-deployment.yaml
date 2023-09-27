@@ -7,6 +7,7 @@ spec:
   replicas: 1
   template:
     metadata:
+      name: zookeeper-pod
       labels:
         app: zookeeper-app
     spec:
