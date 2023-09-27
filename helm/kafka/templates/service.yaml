@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-cm
+data:
+  eureka_service_address: http://kafka-0.kafka:9092/
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+  labels:
+    app: kafka
+spec:
+  clusterIP: None
+  ports:
+    - port: 9098
+      name: kafka
+  selector:
+    app: kafka
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka
+spec:
+  serviceName: "kafka"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+        - name: kafka
+          image: docker.io/bitnami/kafka:3.4
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9092
+          env:
+            - name: KAFKA_SERVER_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: kafka-cm
+                  key: kafka_service_address
+            - name: ZOOKEEPER_COTAINER_CONNECT
+              value: zookeeper-container:2181
+
+
+---                  
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-service
+  labels:
+    app: kafka
+spec:
+  selector:
+    app: kafka
+  type: LoadBalancer
+  ports:
+    - port: 9092
+      targetPort: 9092

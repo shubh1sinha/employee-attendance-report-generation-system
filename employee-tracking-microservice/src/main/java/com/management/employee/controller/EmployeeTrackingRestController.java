@@ -23,6 +23,15 @@ public class EmployeeTrackingRestController {
 	@Autowired
 	private EmployeeTrackingServiceInterface employeeTrackingServiceInterface;
 	
+	/****
+	 * {@summary This method will register the employee
+	 *      and generate it's unique employeeId}
+	 * 
+	 * @author shusinha5
+	 * @param employeeRecord
+	 * @return
+	 * @throws InvalidRequestException
+	 */
 	@ApiOperation(value = "API will save employee records", response = String.class, produces = "apllication/json")
 	@PostMapping("/employee-tracking/save/employee")
 	public ResponseEntity<String> saveEmployee(@RequestBody EmployeeRecords employeeRecord) throws InvalidRequestException{
@@ -34,6 +43,15 @@ public class EmployeeTrackingRestController {
 		
 	}
 	
+	/****
+	 * {@summary This method will return 
+	 * 			 employee By Id}
+	 * @author shusinha5
+	 * @param employeeId
+	 * @return Employee
+	 * @throws InvalidRequestException
+	 * @throws InvalidSearchException
+	 */
 	@ApiOperation(value = "API will give employee records by Id", response = EmployeeRecords.class, produces = "apllication/json")
 	@GetMapping("/employee-tracking/get-employee/{employeeId}")
 	public ResponseEntity<EmployeeRecords> getEmployeeRecordByEmployeeId(@PathVariable long employeeId) throws InvalidRequestException, InvalidSearchException{
