@@ -50,9 +50,12 @@ spec:
                 configMapKeyRef:
                   name: kafka-cm
                   key: kafka_service_address
-            - name: ZOOKEPER_CONTAINER_TAG
+            - name: KAFKA_ZOOKEEPER_CONNECT
               value: zookeeper-container:2181
-
+            - name: KAFKA_BROKER_ID
+              value: "0"
+            - name: KAFKA_CREATE_TOPICS
+              value: topic-pub:1:1, topic-sub:1:1
 
 ---                  
 
