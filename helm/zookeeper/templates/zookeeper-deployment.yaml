@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: zookeper-deployment
@@ -7,7 +7,6 @@ spec:
   replicas: 1
   template:
     metadata:
-      name: zookeeper-pod
       labels:
         app: zookeeper-app
     spec:
@@ -15,21 +14,10 @@ spec:
         - name: zookeeper-container
           image: jamesmedice/zookeeper:latest
           imagePullPolicy: Always
-          resources:
-            limits:
-              cpu: '50m'
-              memory: '1G'
-            requests:
-              cpu: '1m'
-              memory: '348Mi'
           ports:
           - containerPort: 2181
-            name: http
           env:
           - name: ZOOKEEPER_ID
             value: "1"
           - name: ZOOKEEPER_SERVER_1
             value: zookeeper-container
-  selector:
-    matchLabels:
-     app: zookeeper-app
